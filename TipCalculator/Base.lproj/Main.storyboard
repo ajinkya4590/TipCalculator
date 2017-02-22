@@ -38,7 +38,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                 <connections>
-                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="tah-i6-E4J"/>
+                                    <action selector="calculateTipForChangedParams:" destination="BYZ-38-t0r" eventType="editingChanged" id="7hQ-SP-mYU"/>
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" misplaced="YES" id="Shu-hR-cC6">
@@ -69,7 +69,7 @@
                                     <segment title="25%"/>
                                 </segments>
                                 <connections>
-                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="tUh-p0-JlW"/>
+                                    <action selector="calculateTipForChangedParams:" destination="BYZ-38-t0r" eventType="valueChanged" id="l8z-E7-yEK"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pyh-ZW-R8g">
@@ -86,7 +86,13 @@
                             <outletCollection property="gestureRecognizers" destination="gXc-L0-dyV" appends="YES" id="CGL-gy-S02"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Tip Calculator" id="9ST-Dq-M6e"/>
+                    <navigationItem key="navigationItem" title="Tip Calculator" id="9ST-Dq-M6e">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="D3U-zi-MGk">
+                            <connections>
+                                <segue destination="GGz-2D-Hcs" kind="push" id="UBJ-j1-J75"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="billField" destination="Tgu-Wk-IGk" id="neo-wG-Nda"/>
                         <outlet property="tipControl" destination="CI9-fe-1wP" id="BR1-l7-wqz"/>
@@ -102,6 +108,45 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="537.5" y="154.5"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="85y-Jc-JAy">
+            <objects>
+                <viewController id="GGz-2D-Hcs" customClass="SettingsViewController" customModule="TipCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="odl-Ku-qsL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Default Tip Percentage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0he-7u-Jou">
+                                <rect key="frame" x="62" y="106" width="240" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Wsk-df-h3b">
+                                <rect key="frame" x="16" y="192" width="343" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="15%"/>
+                                    <segment title="20%"/>
+                                    <segment title="25%"/>
+                                </segments>
+                                <connections>
+                                    <action selector="setDefaultTipPercentage:" destination="GGz-2D-Hcs" eventType="valueChanged" id="Xhd-s2-oRN"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="mo8-Z4-lYs"/>
+                    <connections>
+                        <outlet property="defaultTipSelector" destination="Wsk-df-h3b" id="vH9-43-UHS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nxi-5g-Aec" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="942.5" y="152.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uqY-LW-1yG">
