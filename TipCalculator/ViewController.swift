@@ -52,11 +52,8 @@ class ViewController: UIViewController {
         let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = bill + tip
         
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        
-        tipLabel.text = numberFormatter.string(from: NSNumber(value: tip))
-        totalLabel.text = numberFormatter.string(from: NSNumber(value: total))
+        tipLabel.text = currencyFormatter(currency: tip)
+        totalLabel.text = currencyFormatter(currency: total)
     }
     
     /*
@@ -68,6 +65,16 @@ class ViewController: UIViewController {
         //save values for the recent calculations feature.
         defaults.set(billField.text, forKey: ViewController.SAVED_BILL_VALUE)
         defaults.set(NSDate(), forKey: ViewController.DATE_BILL_UPDATED)
+    }
+    
+    /*
+        currencyFormatter - Formats the currency as per crrent locale. Also adds a grouping separator
+    */
+    func currencyFormatter(currency:Double) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.usesGroupingSeparator = true
+        return numberFormatter.string(from : NSNumber(value: currency))!
     }
 
     /*
@@ -81,9 +88,7 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         //make billField as the First Responder
         billField.becomeFirstResponder()
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        billField.placeholder = numberFormatter.string(from: NSNumber(value: 0.00))
+        billField.placeholder = currencyFormatter(currency: 0.00)
 
         let defaults = UserDefaults.standard
         tipControl.selectedSegmentIndex = defaults.integer(forKey: SettingsViewController.TIP_PERCENTAGE)
