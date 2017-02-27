@@ -52,8 +52,11 @@ class ViewController: UIViewController {
         let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = bill + tip
         
-        tipLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        
+        tipLabel.text = numberFormatter.string(from: NSNumber(value: tip))
+        totalLabel.text = numberFormatter.string(from: NSNumber(value: total))
     }
     
     /*
@@ -78,6 +81,9 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         //make billField as the First Responder
         billField.becomeFirstResponder()
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        billField.placeholder = numberFormatter.string(from: NSNumber(value: 0.00))
 
         let defaults = UserDefaults.standard
         tipControl.selectedSegmentIndex = defaults.integer(forKey: SettingsViewController.TIP_PERCENTAGE)
