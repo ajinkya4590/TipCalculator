@@ -18,3 +18,4 @@ The following **optional** features are implemented:
 
 ## Walkthrough of implemented user stories:
 
+<img src='https://raw.githubusercontent.com/ajinkya4590/TipCalculator/master/gif/walkthrough.gif' title='App Walkthrough' width='' alt='App Walkthrough' />
