@@ -25,11 +25,13 @@ class ViewController: UIViewController {
 
         //Set the textfield to the previous value
         let defaults = UserDefaults.standard
-        let lastBillUpdate = defaults.object(forKey: ViewController.DATE_BILL_UPDATED) as! NSDate
-        let timeIntervalFromLastChange = lastBillUpdate.timeIntervalSinceNow
-        if(timeIntervalFromLastChange > ViewController.MAX_TIME_INTERVAL){
-            let lastBill = defaults.string(forKey: ViewController.SAVED_BILL_VALUE)
-            billField.text = lastBill
+        if let lastBillUpdate = defaults.object(forKey: ViewController.DATE_BILL_UPDATED) as? NSDate
+        {
+            let timeIntervalFromLastChange = lastBillUpdate.timeIntervalSinceNow
+            if(timeIntervalFromLastChange > ViewController.MAX_TIME_INTERVAL){
+                let lastBill = defaults.string(forKey: ViewController.SAVED_BILL_VALUE)
+                billField.text = lastBill
+            }
         }
         
         //Listen to UIApplicationDidEnterBackground for saving the recent bill value.
